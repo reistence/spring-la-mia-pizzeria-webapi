@@ -15,6 +15,15 @@ public class Pizza {
 
     @Column(nullable = true)
     private String description;
+    private String cover;
+
+    public String getCover() {
+        return cover;
+    }
+
+    public void setCover(String cover) {
+        this.cover = cover;
+    }
 
     @Column(nullable = false)
     private float price;

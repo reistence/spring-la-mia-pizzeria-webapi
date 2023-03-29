@@ -16,7 +16,7 @@
 
 <h1>Pizzas' Menu</h1>
 
-    <table >
+    <table class="table" >
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -30,7 +30,7 @@
             <th scope="row" th:text="*{name}"></th>
             <td th:text="*{description}"></td>
             <td th:text="|€ *{price}|"></td>
-            <td>dopo</td>
+            <td> <img class="cover" th:src="${p.cover}"> </td>
         </tr>
 
         </tbody>
