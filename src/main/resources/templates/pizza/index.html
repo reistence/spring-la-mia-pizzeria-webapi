@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="~{pizza/fragments :: resources}"></th:block>
+    <title>Pizzas' Menu</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <nav th:replace="~{pizza/fragments :: navbar('pizzas')}"></nav>
+
+</div>
+
+<div class="container">
+
+<h1>Pizzas' Menu</h1>
+
+    <table >
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Ingredients</th>
+            <th scope="col">Price</th>
+            <th scope="col">Pic</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${menu}" th:object="${p}">
+            <th scope="row" th:text="*{name}"></th>
+            <td th:text="*{description}"></td>
+            <td th:text="|€ *{price}|"></td>
+            <td>dopo</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+</div>
+
+
+<th:block th:replace="~{pizza/fragments :: scripts}"></th:block>
+</body>
+</html>

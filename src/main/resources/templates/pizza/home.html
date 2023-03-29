@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <th:block th:replace="~{pizza/fragments :: resources}"></th:block>
+
+  <title>Home</title>
+</head>
+<body>
+
+<div class="container-fluid">
+    <nav th:replace="~{pizza/fragments :: navbar('home')}"></nav>
+
+</div>
+
+<div class="my-fluid" >
+    <img class="jumbo" th:src="@{/jumbo.jpg}" >
+
+</div>
+
+<th:block th:replace="~{pizza/fragments :: scripts}"></th:block>
+</body>
+</html>
