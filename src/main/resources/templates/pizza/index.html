@@ -14,27 +14,28 @@
 
 <div class="container">
 
-<h1>Pizzas' Menu</h1>
+<h1>Our Menu</h1>
 
     <table class="table" th:if="${menu.size() > 0}" >
         <thead>
         <tr>
+            <th scope="col"></th>
             <th scope="col">Name</th>
             <th scope="col">Ingredients</th>
             <th scope="col">Price</th>
-            <th scope="col"></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="p : ${menu}" th:object="${p}">
-            <th scope="row" th:text="*{name}"></th>
-            <td th:text="*{description}"></td>
-            <td th:text="|€ *{price}|"></td>
             <td>
                 <a th:href="@{|/pizzas/*{id}|}"  title="detail">
                     <img class="cover" th:src="${p.cover}">
                 </a>
             </td>
+            <th scope="row" th:text="*{name}"></th>
+            <td th:text="*{description}"></td>
+            <td style="color: #98694b; font-size: 1.5rem " th:text="|€*{price}|"></td>
+
         </tr>
         </tbody>
     </table>
