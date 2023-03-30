@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="~{pizza/fragments :: resources}"></th:block>
+    <title th:text="|Pizza ${pizza.name}|" ></title>
+</head>
+<body>
+<div class="container-fluid">
+  <nav th:replace="~{pizza/fragments :: navbar('pizzas', '', false)}"></nav>
+</div>
+
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1 th:text="|Our ${pizza.name}|" class="text-center"></h1>
+        <span class="price" th:text="|€ ${pizza.price}|"></span>
+    </div>
+
+    <div class="wrapper d-flex justify-content-center flex-column ">
+        <img class="cover-show" th:src="${pizza.cover}">
+
+        <p class="text-center my-5" th:text="|Ingredients: ${pizza.description}|"> </p>
+
+    </div>
+
+</div>
+
+<th:block th:replace="~{pizza/fragments :: scripts}"></th:block>
+</body>
+</html>

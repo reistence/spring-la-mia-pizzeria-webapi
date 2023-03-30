@@ -8,7 +8,7 @@
 <body>
 
 <div class="container-fluid">
-    <nav th:replace="~{pizza/fragments :: navbar('pizzas')}"></nav>
+    <nav th:replace="~{pizza/fragments :: navbar('pizzas', '', true)}"></nav>
 
 </div>
 
@@ -16,7 +16,7 @@
 
 <h1>Pizzas' Menu</h1>
 
-    <table class="table" >
+    <table class="table" th:if="${menu.size() > 0}" >
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -30,11 +30,15 @@
             <th scope="row" th:text="*{name}"></th>
             <td th:text="*{description}"></td>
             <td th:text="|€ *{price}|"></td>
-            <td> <img class="cover" th:src="${p.cover}"> </td>
+            <td>
+                <a th:href="@{|/pizzas/*{id}|}"  title="detail">
+                    <img class="cover" th:src="${p.cover}">
+                </a>
+            </td>
         </tr>
-
         </tbody>
     </table>
+    <p th:if="${menu.size() == 0}">No pizza corresponding to this query</p>
 
 </div>
 
