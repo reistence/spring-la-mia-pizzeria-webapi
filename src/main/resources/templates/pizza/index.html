@@ -32,9 +32,12 @@
                     <img class="cover" th:src="${p.cover}">
                 </a>
             </td>
-            <th scope="row" th:text="*{name}"></th>
-            <td th:text="*{description}"></td>
-            <td style="color: #98694b; font-size: 1.5rem " th:text="|€*{price}|"></td>
+            <th scope="row" style="font-size: 2rem " >
+                <a th:href="@{|/pizzas/*{id}|}" th:text="*{name}" title="detail">
+                </a>
+            </th>
+            <td style="font-size: 1.3rem " th:text="*{description}"></td>
+            <td style="color: #98694b; font-size: 2rem " th:text="|€*{price}|"></td>
 
         </tr>
         </tbody>
