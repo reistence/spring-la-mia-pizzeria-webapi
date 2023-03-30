@@ -11,6 +11,8 @@
 </div>
 
 <div class="container">
+    <a th:href="@{/pizzas/index}"><i style="font-size: 2rem" class="fa-solid fa-chevron-left"></i></a>
+
     <div class="d-flex justify-content-center">
         <h1 th:text="|Our ${pizza.name}|" class="text-center"></h1>
         <span class="price" th:text="|€ ${pizza.price}|"></span>

@@ -17,7 +17,12 @@ text-decoration: none !important;
 }
 
 a:hover{
-color: red;
+color: #98694b;
+}
+
+i:hover{
+transform: scale(1.15);
+
 }
 
 ul{
@@ -48,7 +53,7 @@ color: white;
 }
 
 h1{
-color:#e99e68;
+color:#98694b;
 }
 
 .my-logo{
@@ -101,7 +106,7 @@ background-image: linear-gradient(to left, rgba(255,0,0,0), rgba(0, 0 ,0,.5), rg
     z-index: 99;
     right: 0px;
     transform: translate(-0%, -50%);
-    color: #e99e68;
+    color: #98694b;
     border-radius: 50% 0% 0% 50%;
     text-align: center;
     align-items: center;
@@ -149,7 +154,7 @@ width: 100%;
 
 
 table > thead{
-border-bottom: 1px solid #e99e68 !important;
+border-bottom: 1px solid #98694b !important;
 }
 
 tbody > tr{
@@ -176,6 +181,7 @@ padding: .5em;
 
 .my-active{
 /*color: red !important;*/
+color: #98694b !important;
 font-weight: bold;
 }
 
