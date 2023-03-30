@@ -32,6 +32,8 @@ transform: scale(1.15);
 
 nav{
 background: #262627d9!important;
+    backdrop-filter: blur(3px);
+
 }
 
 nav:hover{
@@ -108,7 +110,7 @@ border-radius: 50%;
     overflow: hidden;
         width: 100%;
         max-width: 100vmin;
-        margin: 0 auto;
+        margin: 0 auto 2em;
 }
 
 .cover-show{
@@ -168,6 +170,7 @@ table{
 background-color: #262627 !important;
 color: white !important;
 width: 100%;
+margin-bottom: 3em !important;
 }
 
 
@@ -189,6 +192,11 @@ transform: scale(1.05);
 
 tbody > tr > th, td{
 padding: .5em;
+}
+
+tbody > tr:last-child {
+border-bottom: 1px solid #98694b;
+
 }
 
 
