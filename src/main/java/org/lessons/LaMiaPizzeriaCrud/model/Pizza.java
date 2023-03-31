@@ -1,6 +1,10 @@
 package org.lessons.LaMiaPizzeriaCrud.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "pizzas")
@@ -10,13 +14,42 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    @NotBlank
+    @Size(min = 5, max = 255, message = "Il Nome della pizza non può superare i 255 caratteri")
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = true)
+
+
+    @NotBlank
+    @Size(min = 5, max = 20000, message = "La lista degli ingredienti non può superare i 2000 caratteri")
+    @Column(nullable = false)
     private String description;
+
+
+    @NotBlank
+    @Size(min = 5, max = 20000, message = "Il link dell'immagine non può superare i 2000 caratteri")
     private String cover;
 
+    @Positive
+    @Column(nullable = false)
+    private float price;
+
+    //Constructors
+    public Pizza() {
+        super();
+    }
+
+    public Pizza(Integer id, String name, String description, String cover, float price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.cover = cover;
+        this.price = price;
+    }
+
+    //G/Setters
     public String getCover() {
         return cover;
     }
@@ -25,8 +58,7 @@ public class Pizza {
         this.cover = cover;
     }
 
-    @Column(nullable = false)
-    private float price;
+
 
     public Integer getId() {
         return id;

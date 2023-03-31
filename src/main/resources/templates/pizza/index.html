@@ -14,15 +14,20 @@
 
 <div class="container">
 
-<h1>Our Menu</h1>
+
+    <div class="d-flex justify-content-start align-items-center" style="gap: 1em">
+        <h1>Menu</h1>
+        <a th:href="@{/pizzas/create}" class="my-btn-sx rounded-circle" title="add pizza"><i
+                class="fa-solid fa-plus"></i></a>
+    </div>
 
     <table class="table" th:if="${menu.size() > 0}" >
         <thead>
         <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Ingredients</th>
-            <th scope="col">Price</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Ingredienti</th>
+            <th scope="col">Prezzo</th>
         </tr>
         </thead>
         <tbody>

@@ -32,7 +32,7 @@ transform: scale(1.15);
 
 nav{
 background: #262627d9!important;
-    backdrop-filter: blur(3px);
+backdrop-filter: blur(3px);
 
 }
 
@@ -40,17 +40,12 @@ nav:hover{
 background: #262627 !important;
 }
 
-
-
 ul{
 list-style: none;
 width: 70%;
 max-width: 30em;
 padding-left: 0 !important;
 }
-
-
-
 
 .item{
 border: 1px solid white;
@@ -100,40 +95,36 @@ transform: scale(1.05);
 }
 .cover:hover{
 transform: scale(1.05);
-
-
 }
 
 .wrapper{
 position: relative;
 border-radius: 50%;
-    overflow: hidden;
-        width: 100%;
-        max-width: 100vmin;
-        margin: 0 auto 2em;
+overflow: hidden;
+width: 100%;
+max-width: 100vmin;
+margin: 0 auto 2em;
 }
 
 .cover-show{
-    object-fit: contain;
-
+object-fit: contain;
 }
 
- .price{
-position: absolute;
-    top: 20%;
+.price{
+position: fixed;
+top: 20%;
 background-image: linear-gradient(to left, rgba(255,0,0,0), rgba(0, 0 ,0,.5), rgba(0 ,0, 0,1));
-    font-size: 2rem;
-    z-index: 99;
-    right: 0px;
-    transform: translate(-0%, -50%);
-    color: #98694b;
-    border-radius: 50% 0% 0% 50%;
-    text-align: center;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-
+font-size: 2rem;
+z-index: 99;
+right: 0px;
+transform: translate(-0%, -50%);
+color: #98694b;
+border-radius: 50% 0% 0% 50%;
+text-align: center;
+align-items: center;
+display: flex;
+justify-content: center;
+padding: 1rem;
 }
 
 
@@ -186,7 +177,6 @@ border-bottom: 1px solid black;
 tbody > tr:hover{
 background-color: #101010 ;
 transform: scale(1.05);
-
 }
 
 tbody > tr > th, td{
@@ -195,13 +185,7 @@ padding: .5em;
 
 tbody > tr:last-child {
 border-bottom: 1px solid #98694b;
-
 }
-
-
-
-
-
 
 
 .my-active{
@@ -213,3 +197,47 @@ font-weight: bold;
 .navbar-toggler-icon{
 color: white !important;
 }
+
+
+.my-btn-sx{
+padding: .5em;
+color: #98694b !important;
+width: 2em;
+height: 2em;
+display: flex;
+align-content: center;
+justify-content: center;
+align-items: center;
+}
+
+.my-btn-sx:hover{
+background-color:#98694b !important;
+color: #262627 !important ;
+}
+
+
+.my-btn{
+appearance: none;
+border: none;
+background: transparent;
+padding: .5em 1em;
+color: #98694b !important;
+display: flex;
+align-content: center;
+justify-content: center;
+align-items: center;
+border-radius: 10px;
+}
+
+.my-btn:hover{
+background-color:#98694b !important;
+color: #262627 !important ;
+}
+
+
+input, textarea{
+background-color:  #262627 !important;
+color: #98694b !important;
+}
+
+
