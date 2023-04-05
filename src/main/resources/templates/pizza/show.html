@@ -25,14 +25,14 @@
 
     </div>
     <h2>Offerte</span>
-        <a th:href="@{/specialoffer/create(pizzaID=${pizza.id})}"
+        <a th:href="@{/specialoffer/create(pizzaId=${pizza.id})}"
            class="my-btn"
            title="Aggiungi Offerta"
         >
             <i class="fa-solid fa-plus"></i>
         </a>
     </h2>
-    <table class="table">
+    <table class="table" th:object="${pizza}">
         <thead>
         <tr>
             <th scope="col">Titolo</th>
@@ -41,11 +41,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="specialoffer : *{specialoffer}" th:object="${specialoffer}">
-            <td th:text="${specialoffer.title}"></td>
-            <td th:text="${#temporals.format(specialoffer.startingDate, 'dd/MM/yyyy')}"></td>
-            <td th:text="${#temporals.format(specialoffer.endingDate, 'dd/MM/yyyy')}"></td>
-
+        <tr th:each="offer : *{specialOffers}" >
+            <td th:text="${offer.title}"></td>
+            <td th:text="${#temporals.format(offer.startingDate, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(offer.endingDate, 'dd/MM/yyyy')}"></td>
+            <td> <a class="my-btn" th:href="@{|/specialoffer/edit/${offer.id}|}">Modifica</a> </td>
         </tr>
         </tbody>
     </table>

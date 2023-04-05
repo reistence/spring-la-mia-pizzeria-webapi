@@ -16,11 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @Controller
@@ -37,19 +33,19 @@ public class SpecialOfferController {
     private PizzaService pizzaService;
 
     @GetMapping("/create")
-    public String create(@RequestParam(name = "pizzaId") Optional<Integer> id, Model model) {
+    public String create(@RequestParam(name = "pizzaId") Integer id, Model model) {
         SpecialOffer specialOffer = new SpecialOffer();
         specialOffer.setStartingDate(LocalDate.now());
         specialOffer.setEndingDate(LocalDate.now().plusMonths(1));
-        if (id.isPresent()) {
+
             try {
                /* Pizza pizza = pizzaService.getById(id.get());*/
-                Pizza pizza = pizzaRepo.findById(id.get()).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                Pizza pizza = pizzaRepo.findById(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
                 specialOffer.setPizza(pizza);
             } catch (PizzaNotFoundException e) {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
             }
-        }
+
         model.addAttribute("specialoffer", specialOffer);
         return "/specialoffer/create";
     }
@@ -61,6 +57,29 @@ public class SpecialOfferController {
         }
         SpecialOffer createdOffer = offerService.create(formOffer);
         return "redirect:/pizzas/" + Integer.toString(createdOffer.getPizza().getId());
+    }
+
+
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        try {
+            SpecialOffer offer = offerService.getById(id);
+            model.addAttribute("specialoffer", offer);
+
+            return "/specialoffer/edit";
+        } catch (PizzaNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
+        }
+    }
+    @PostMapping("/edit/{id}")
+    public String editOffer(@PathVariable Integer id, @Valid @ModelAttribute("offer") SpecialOffer formOffer, BindingResult bindingResult) {
+        try {
+            SpecialOffer updateOffer = offerService.updateOffer(formOffer, id);
+            return "redirect:/pizzas/index";
+        } catch (RuntimeException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Offer with id " + id + " not found");
+        }
     }
 }
 

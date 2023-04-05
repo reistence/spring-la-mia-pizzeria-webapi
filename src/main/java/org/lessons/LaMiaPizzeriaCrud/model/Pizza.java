@@ -64,8 +64,6 @@ public class Pizza {
         this.cover = cover;
     }
 
-
-
     public Integer getId() {
         return id;
     }
