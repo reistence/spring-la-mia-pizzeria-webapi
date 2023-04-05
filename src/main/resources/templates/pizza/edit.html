@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <th:block th:replace="~{pizza/fragments :: resources}"></th:block>
+</head>
+<body>
+<div class="container-fluid">
+    <nav th:replace="~{pizza/fragments :: navbar('pizzas', '', false)}"></nav>
+</div>
+<div class="container py-4">
+    <div class="row">
+       <!-- <form class="col-10" method="POST" th:object="${pizza}" th:action="@{|*{id}|}" >
+            &lt;!&ndash;Name&ndash;&gt;
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome della pizza</label>
+                <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}"  th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                    <ul>
+                        <li th:each="error : ${#fields.errors('name')}" th:text="${error}"></li>
+                    </ul>
+                </div>
+            </div>
+            &lt;!&ndash;Price&ndash;&gt;
+            <div class="mb-3">
+                <label for="price" class="form-label">Prezzo</label>
+                <input type="number" step="0.01" min="0" class="form-control" id="price" aria-describedby="name" th:field="*{price}" th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                    <ul>
+                        <li th:each="error : ${#fields.errors('price')}" th:text="${error}"></li>
+                    </ul>
+                </div>
+            </div>
+            &lt;!&ndash;Description&ndash;&gt;
+            <div class="mb-3">
+                <label for="description" class="form-label">Descrizione</label>
+                <textarea th:field="*{description}" class="form-control" id="description" th:errorClass="is-invalid"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                    <ul>
+                        <li th:each="error : ${#fields.errors('description')}" th:text="${error}"></li>
+                    </ul>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Aggiungi</button>
+            <button type="reset" class="btn btn-secondary">Resetta i campi</button>
+        </form>-->
+
+        <form th:object="${pizza}" class="w-75 m-auto mt-5" method="post" th:action="@{|*{id}|}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input th:errorClass="is-invalid" type="text" class="form-control" id="name" th:field="*{name}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Prezzo</label>
+                <input th:errorClass="is-invalid" type="number" class="form-control" id="price" th:field="*{price}">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Descrizione</label>
+                <textarea th:errorClass="is-invalid" type="textarea" class="form-control" id="description"
+                          th:field="*{description}"></textarea>
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-12">
+                <label class="form-label" for="cover">Link Immagine</label>
+                <input type="text" id="cover" class="form-control" th:field="*{cover}"
+                       th:errorClass="is-invalid">
+                <div class="invalid-feedback" th:if="${#fields.hasErrors('cover')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('cover')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+            </div>
+            <a class="btn btn-danger" th:href="@{/pizzas}">Cancel</a>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+
+    </div>
+
+</div>
+<th:block th:replace="~{pizza/fragments :: scripts}"></th:block>
+
+</body>

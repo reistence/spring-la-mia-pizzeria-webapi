@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,5 +79,56 @@ public class PizzaController {
         return "redirect:/pizzas/index";
     }
 
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        try {
+            Pizza pizza = pizzaService.getById(id);
+            model.addAttribute("pizza", pizza);
+
+            return "/pizza/edit";
+        } catch (PizzaNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
+        }
+    }
+
+   /* @PostMapping("/edit/{id}")
+    public String update(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()){
+            return "/pizzas/edit";
+        }
+        redirectAttributes.addFlashAttribute("success", "La pizza " + pizzaForm.getName() + " è stata aggiornata con successo.");
+
+        try {
+            Pizza updatedPizza = pizzaService.updatePizza(pizzaForm, id);
+            return "redirect:/pizzas";
+*//*
+                    + Integer.toString(updatedPizza.getId());
+*//*
+        } catch (PizzaNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza " + id + "  non trovata");
+        }
+    }*/
+   @PostMapping("/edit/{id}")
+   public String editPizza(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
+       try {
+           Pizza updatePizza = pizzaService.updatePizza(formPizza, id);
+           return "redirect:/pizzas/{id}";
+       } catch (RuntimeException e) {
+           throw new ResponseStatusException(HttpStatus.NOT_FOUND, "pizza with id " + id + " not found");
+       }
+   }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes){
+        try {
+            Pizza pizza = pizzaService.getById(id);
+            redirectAttributes.addFlashAttribute("danger", "La pizza " + pizza.getName() + " è stata cancellata con successo");
+            pizzaService.deleteById(id);
+            return "/pizza/edit";
+        } catch (PizzaNotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
+        }
+    }
 
 }
