@@ -13,42 +13,6 @@
 </div>
 <div class="container py-4">
     <div class="row">
-       <!-- <form class="col-10" method="POST" th:object="${pizza}" th:action="@{|*{id}|}" >
-            &lt;!&ndash;Name&ndash;&gt;
-            <div class="mb-3">
-                <label for="name" class="form-label">Nome della pizza</label>
-                <input type="text" class="form-control" id="name" aria-describedby="name" th:field="*{name}"  th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
-                    <ul>
-                        <li th:each="error : ${#fields.errors('name')}" th:text="${error}"></li>
-                    </ul>
-                </div>
-            </div>
-            &lt;!&ndash;Price&ndash;&gt;
-            <div class="mb-3">
-                <label for="price" class="form-label">Prezzo</label>
-                <input type="number" step="0.01" min="0" class="form-control" id="price" aria-describedby="name" th:field="*{price}" th:errorClass="is-invalid">
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('price')}">
-                    <ul>
-                        <li th:each="error : ${#fields.errors('price')}" th:text="${error}"></li>
-                    </ul>
-                </div>
-            </div>
-            &lt;!&ndash;Description&ndash;&gt;
-            <div class="mb-3">
-                <label for="description" class="form-label">Descrizione</label>
-                <textarea th:field="*{description}" class="form-control" id="description" th:errorClass="is-invalid"></textarea>
-                <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
-                    <ul>
-                        <li th:each="error : ${#fields.errors('description')}" th:text="${error}"></li>
-                    </ul>
-                </div>
-            </div>
-
-            <button type="submit" class="btn btn-danger">Aggiungi</button>
-            <button type="reset" class="btn btn-secondary">Resetta i campi</button>
-        </form>-->
-
         <form th:object="${pizza}" class="w-75 m-auto mt-5" method="post" th:action="@{|*{id}|}">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
@@ -89,8 +53,8 @@
                     </ul>
                 </div>
             </div>
-            <a class="btn btn-danger" th:href="@{/pizzas}">Cancel</a>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <a class="btn btn-danger" th:href="@{/pizzas}">Annulla</a>
+            <button type="submit" class="btn btn-primary">Conferma</button>
         </form>
 
 
