@@ -12,6 +12,8 @@ public class SpecialOffer {
     private LocalDate startingDate;
     private LocalDate endingDate;
     private String title;
+
+
     @ManyToOne
     private Pizza pizza;
 

@@ -24,6 +24,31 @@
         <p class="text-center my-5" th:text="|Ingredients: ${pizza.description}|"> </p>
 
     </div>
+    <h2>Offerte</span>
+        <a th:href="@{/specialoffer/create(pizzaID=${pizza.id})}"
+           class="my-btn"
+           title="Aggiungi Offerta"
+        >
+            <i class="fa-solid fa-plus"></i>
+        </a>
+    </h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Titolo</th>
+            <th scope="col">Inizio</th>
+            <th scope="col">Fine</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="specialoffer : *{specialoffer}" th:object="${specialoffer}">
+            <td th:text="${specialoffer.title}"></td>
+            <td th:text="${#temporals.format(specialoffer.startingDate, 'dd/MM/yyyy')}"></td>
+            <td th:text="${#temporals.format(specialoffer.endingDate, 'dd/MM/yyyy')}"></td>
+
+        </tr>
+        </tbody>
+    </table>
 
 </div>
 
