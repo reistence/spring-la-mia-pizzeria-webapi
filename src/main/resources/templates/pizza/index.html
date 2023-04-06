@@ -43,6 +43,16 @@
             </th>
             <td style="font-size: 1.3rem " th:text="*{description}"></td>
             <td style="color: #98694b; font-size: 2rem " th:text="|€*{price}|"></td>
+            <td>  <a th:href="@{|/pizzas/edit/*{id}|}" class="my-btn" title="edit">
+                          <i class="fa-solid fa-pen-to-square"></i>
+                     </a>
+                <a
+                        th:href="@{|/pizzas/delete/*{id}|}"
+                        class="my-btn"
+                        title="edit" >
+                                <i class="fa-solid fa-trash-can"></i>
+                </a>
+            </td>
 
         </tr>
         </tbody>

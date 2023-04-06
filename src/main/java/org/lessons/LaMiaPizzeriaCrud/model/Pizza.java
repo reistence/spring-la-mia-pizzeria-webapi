@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "pizzas")
@@ -41,6 +42,15 @@ public class Pizza {
 
     @OneToMany(mappedBy = "pizza")
     private List<SpecialOffer> specialOffers;
+
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "pizza_ingredient",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private List<Ingredient> ingredients;
 
     //Constructors
     public Pizza() {
@@ -96,6 +106,12 @@ public class Pizza {
         this.price = price;
     }
 
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+    public List<Ingredient> getIngredients(){
+        return ingredients;
+    }
 
     public List<SpecialOffer> getSpecialOffers(){
         return specialOffers;
@@ -104,4 +120,7 @@ public class Pizza {
     public void setSpecialOffers(List<SpecialOffer> offers){
          this.specialOffers = offers;
     }
+
+
+
 }

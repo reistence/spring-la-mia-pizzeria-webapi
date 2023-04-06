@@ -2,8 +2,10 @@ package org.lessons.LaMiaPizzeriaCrud.controller;
 
 import jakarta.validation.Valid;
 import org.lessons.LaMiaPizzeriaCrud.exceptions.PizzaNotFoundException;
+import org.lessons.LaMiaPizzeriaCrud.model.Ingredient;
 import org.lessons.LaMiaPizzeriaCrud.model.Pizza;
 import org.lessons.LaMiaPizzeriaCrud.repository.PizzaRepository;
+import org.lessons.LaMiaPizzeriaCrud.service.IngredientService;
 import org.lessons.LaMiaPizzeriaCrud.service.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -25,6 +27,9 @@ public class PizzaController {
     @Autowired
     private PizzaService pizzaService;
 
+    @Autowired
+    private IngredientService ingredientService;
+
     @GetMapping("/home")
     public String home(Model model){
         return "/pizza/home";
@@ -45,13 +50,6 @@ public class PizzaController {
 
     @GetMapping("/{pizzaId}")
     public String show(@PathVariable("pizzaId") Integer id, Model model){
-     /*   Optional<Pizza> result = pizzaRepo.findById(id);
-        if (result.isPresent()) {
-            model.addAttribute("pizza", result.get());
-            return "/pizza/show";
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
-        }*/
         try {
             Pizza pizza = pizzaService.getById(id);
             model.addAttribute("pizza", pizza);
@@ -66,6 +64,8 @@ public class PizzaController {
     @GetMapping("/create")
     public String create(Model model){
         model.addAttribute("pizza", new Pizza());
+        List<Ingredient> ingredient = ingredientService.getAll();
+        model.addAttribute("ingredientList", ingredient );
         return "/pizza/create";
     }
 
@@ -76,6 +76,7 @@ public class PizzaController {
             return "/pizza/create";
         }
         pizzaService.createPizza(formPizza);
+
         return "redirect:/pizzas/index";
     }
 
@@ -84,7 +85,9 @@ public class PizzaController {
     public String edit(@PathVariable Integer id, Model model){
         try {
             Pizza pizza = pizzaService.getById(id);
+            List<Ingredient> ingredient = ingredientService.getAll();
             model.addAttribute("pizza", pizza);
+            model.addAttribute("ingredientList", ingredient );
 
             return "/pizza/edit";
         } catch (PizzaNotFoundException e) {
@@ -92,23 +95,6 @@ public class PizzaController {
         }
     }
 
-   /* @PostMapping("/edit/{id}")
-    public String update(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza pizzaForm, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-        if (bindingResult.hasErrors()){
-            return "/pizzas/edit";
-        }
-        redirectAttributes.addFlashAttribute("success", "La pizza " + pizzaForm.getName() + " è stata aggiornata con successo.");
-
-        try {
-            Pizza updatedPizza = pizzaService.updatePizza(pizzaForm, id);
-            return "redirect:/pizzas";
-*//*
-                    + Integer.toString(updatedPizza.getId());
-*//*
-        } catch (PizzaNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza " + id + "  non trovata");
-        }
-    }*/
    @PostMapping("/edit/{id}")
    public String editPizza(@PathVariable Integer id, @Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult) {
        try {
@@ -125,10 +111,11 @@ public class PizzaController {
             Pizza pizza = pizzaService.getById(id);
             redirectAttributes.addFlashAttribute("danger", "La pizza " + pizza.getName() + " è stata cancellata con successo");
             pizzaService.deleteById(id);
-            return "/pizza/edit";
+            return "/pizzas/index";
         } catch (PizzaNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
         }
     }
+
 
 }

@@ -22,7 +22,7 @@ public class PizzaService {
         pizzaToSave.setDescription(formPizza.getDescription());
         pizzaToSave.setCover(formPizza.getCover());
         pizzaToSave.setPrice(formPizza.getPrice());
-
+        pizzaToSave.setIngredients(formPizza.getIngredients());
         return pizzaRepo.save(pizzaToSave);
     }
 
@@ -50,7 +50,8 @@ public class PizzaService {
         pizzaToUpdate.setName(pizzaForm.getName());
         pizzaToUpdate.setPrice(pizzaForm.getPrice());
         pizzaToUpdate.setDescription(pizzaForm.getDescription());
-       /* pizzaToUpdate.setCover(pizzaForm.getCover());*/
+        pizzaToUpdate.setCover(pizzaForm.getCover());
+        pizzaToUpdate.setIngredients(pizzaForm.getIngredients());
         return pizzaRepo.save(pizzaToUpdate);
     }
 

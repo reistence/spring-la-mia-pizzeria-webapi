@@ -21,9 +21,12 @@
     <div class="wrapper d-flex justify-content-center flex-column ">
         <img class="cover-show" th:src="${pizza.cover}">
 
-        <p class="text-center my-5" th:text="|Ingredients: ${pizza.description}|"> </p>
+        <p class="text-center my-5"> Ingredienti:
+            <span th:each="ingr : ${pizza.ingredients}" th:text="|${ingr.name}  |"></span>
+        </p>
 
     </div>
+    <p class="text-center my-5" th:text="|Descrizione: ${pizza.description}|"> </p>
     <h2>Offerte</span>
         <a th:href="@{/specialoffer/create(pizzaId=${pizza.id})}"
            class="my-btn"
@@ -46,6 +49,7 @@
             <td th:text="${#temporals.format(offer.startingDate, 'dd/MM/yyyy')}"></td>
             <td th:text="${#temporals.format(offer.endingDate, 'dd/MM/yyyy')}"></td>
             <td> <a class="my-btn" th:href="@{|/specialoffer/edit/${offer.id}|}">Modifica</a> </td>
+            <td> <a class="my-btn" th:href="@{|/specialoffer/delete/${offer.id}|}">Elimina</a> </td>
         </tr>
         </tbody>
     </table>

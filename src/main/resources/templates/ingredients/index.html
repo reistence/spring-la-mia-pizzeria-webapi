@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="~{pizza/fragments :: resources}"></th:block>
+
+  <title>Lista Ingredienti</title>
+</head>
+<body>
+<div class="container-fluid">
+  <nav th:replace="~{pizza/fragments :: navbar('ingredients', '', false)}"></nav>
+</div>
+
+<div class="container">
+  <h1>Ingredienti</h1>
+  <div class="row">
+    <div class="col-8 my-5">
+      <ul class="">
+        <li class="d-flex justify-content-between my-2" th:each="item : ${list}">
+          <h5 th:text="${item.name}"></h5>
+          <div class="d-flex">
+            <a th:href="@{|/ingredients/edit/*{id}|}" class="my-btn" title="edit">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a
+                    th:href="@{|/ingredients/delete/*{id}|}"
+                    class="my-btn"
+                    title="edit" >
+              <i class="fa-solid fa-trash-can"></i>
+            </a>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+    <div class="col-4 my-5">
+      <form
+              id="category-form"
+              method="post"
+              th:action="@{/ingredients/save}"
+              th:object="${ingredientObj}"
+      >
+
+        <div class="col-12">
+          <label class="form-label" for="name">Nome*</label>
+          <input type="text" id="name" class="form-control" th:field="*{name}"
+                 th:errorClass="is-invalid">
+          <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+            <ul>
+              <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="my-btn">Salva</button>
+        </div>
+      </form>
+    </div>
+
+</div>
+<th:block th:replace="~{pizza/fragments :: scripts}"></th:block>
+</body>
+</html>
+

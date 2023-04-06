@@ -38,6 +38,20 @@
                   th:classAppend="${current == 'pizzas'} ? my-active : not-active"
           >Menu</a>
         </li>
+        <li class="nav-item">
+          <a
+                  th:href="@{/ingredients}"
+                  class="nav-link text-white"
+                  th:classAppend="${current == 'ingredients'} ? my-active : not-active"
+          >Ingredienti</a>
+        </li>
+        <li class="nav-item">
+          <a
+                  th:href="@{/specialoffer/index}"
+                  class="nav-link text-white"
+                  th:classAppend="${current == 'offer'} ? my-active : not-active"
+          >Offerte</a>
+        </li>
     <!--    <li class="nav-item">
           <a
                   th:href="@{/songs}"
