@@ -18,11 +18,11 @@
         <li class="d-flex justify-content-between my-2" th:each="item : ${list}">
           <h5 th:text="${item.name}"></h5>
           <div class="d-flex">
-            <a th:href="@{|/ingredients/edit/*{id}|}" class="my-btn" title="edit">
+            <a th:href="@{|/ingredients/edit/${item.id}|}" class="my-btn" title="edit">
               <i class="fa-solid fa-pen-to-square"></i>
             </a>
             <a
-                    th:href="@{|/ingredients/delete/*{id}|}"
+                    th:href="@{|/ingredients/delete/${item.id}|}"
                     class="my-btn"
                     title="edit" >
               <i class="fa-solid fa-trash-can"></i>

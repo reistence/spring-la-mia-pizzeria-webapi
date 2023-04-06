@@ -111,7 +111,7 @@ public class PizzaController {
             Pizza pizza = pizzaService.getById(id);
             redirectAttributes.addFlashAttribute("danger", "La pizza " + pizza.getName() + " è stata cancellata con successo");
             pizzaService.deleteById(id);
-            return "/pizzas/index";
+            return "redirect:/pizzas/index";
         } catch (PizzaNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
         }

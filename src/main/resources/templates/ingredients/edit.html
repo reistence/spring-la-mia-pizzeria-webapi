@@ -16,18 +16,18 @@
               id="ingredient-form"
               method="post"
               th:action="@{/ingredients/save}"
-              th:object="${ingredientObj}"
+              th:object="${ingredient}"
       >
 
         <div class="col-12">
           <label class="form-label" for="name">Nome*</label>
           <input type="text" id="name" class="form-control" th:field="*{name}"
                  th:errorClass="is-invalid">
-          <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
+          <!--<div class="invalid-feedback" th:if="${#fields.hasErrors('name')}">
             <ul>
               <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
             </ul>
-          </div>
+          </div>-->
         </div>
         <div class="col-12">
           <button type="submit" class="my-btn">Salva</button>

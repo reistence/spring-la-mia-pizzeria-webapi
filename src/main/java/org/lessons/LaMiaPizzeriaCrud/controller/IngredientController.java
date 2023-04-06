@@ -51,7 +51,7 @@ public class IngredientController {
     public String edit(@PathVariable Integer id, Model model){
         try {
             Ingredient ingredient = ingredientService.getById(id);
-            model.addAttribute("ingredientList", ingredient );
+            model.addAttribute("ingredient", ingredient );
 
             return "/ingredients/edit";
         } catch (PizzaNotFoundException e) {
@@ -69,13 +69,13 @@ public class IngredientController {
         }
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, RedirectAttributes redirectAttributes){
         try {
             Ingredient ingredient = ingredientService.getById(id);
             redirectAttributes.addFlashAttribute("danger", "L'Ingrediente " + ingredient.getName() + " è stato cancellato con successo");
             ingredientService.deleteById(id);
-            return "/ingredients";
+            return "redirect:/ingredients";
         } catch (PizzaNotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pizza id: " + id + " not found");
         }
