@@ -4,3 +4,5 @@ INSERT INTO `pizzas` (`id`, `description`, `name`, `price`, `cover`) VALUES (NUL
 INSERT INTO `pizzas` (`id`, `description`, `name`, `price`, `cover` ) VALUES (NULL, 'Classica pizza della tradizione', 'Margherita', '4.00', 'https://cdn.shopify.com/s/files/1/0586/6795/8427/articles/Margherita-9920.jpg?crop=center&height=915&v=1644590028&width=1200')
 INSERT INTO `pizzas` (`id`, `description`, `name`, `price`, `cover` ) VALUES (NULL, 'Classica marinara rivisitata', 'Marinara Gialla', '6.50', 'https://i.pinimg.com/originals/80/57/18/8057183226efe5482010c6bcb5f4bd5f.jpg')
 
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `password`, `email`) VALUES (NULL, 'Valerio', 'Lamberti', '{noop}password', 'reistence@gmail.com'), ('2', 'Fabrizio', 'Misseri', '{noop}fasulo', 'missfabr@gmail.com');
+INSERT INTO `users_roles` (`user_id`, `roles_id`) VALUES ('1', '1'), ('2', '2');
