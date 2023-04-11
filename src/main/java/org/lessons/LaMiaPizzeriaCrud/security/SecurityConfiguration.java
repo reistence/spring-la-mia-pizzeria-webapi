@@ -45,10 +45,12 @@ public class SecurityConfiguration {
                 .requestMatchers("/pizzas/create", "/pizzas/edit/**", "/pizzas/delete/**")
                 .hasAuthority("ADMIN")
                 .requestMatchers("/", "/books", "/books/**").hasAnyAuthority("USER", "ADMIN")
+                .requestMatchers("/", "/pizzas", "/pizzas/**").hasAnyAuthority( "ADMIN")
                 .requestMatchers("/**").permitAll()
                 .and().formLogin()
                 .and().logout()
                 .and().exceptionHandling();
+        http.csrf().disable();
 
         return http.build();
 

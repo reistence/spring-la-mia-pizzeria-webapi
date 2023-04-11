@@ -1,5 +1,6 @@
 package org.lessons.LaMiaPizzeriaCrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -40,8 +41,13 @@ public class Pizza {
     private float price;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "pizza")
     private List<SpecialOffer> specialOffers;
+
+
+
+
 
 
 
