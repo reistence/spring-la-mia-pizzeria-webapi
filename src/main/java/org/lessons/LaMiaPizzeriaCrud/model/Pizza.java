@@ -45,12 +45,6 @@ public class Pizza {
     @OneToMany(mappedBy = "pizza")
     private List<SpecialOffer> specialOffers;
 
-
-
-
-
-
-
     @ManyToMany
     @JoinTable(
             name = "pizza_ingredient",
